@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Really Simple Chat</title>
 <script src="/socket.io/socket.io.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
     var matches = window.location.pathname.match(/^\/ch\/(.*)/);
     if (matches === null) {
         console.log("not channel");
+	window.location = "http://rsc.stevebob.net/ch/hello-world";
     } else {
         var channel = matches[1];
         console.log(channel);
     }
     
-    var socket = io.connect('http://192.168.0.8:8001');
+    var socket = io.connect('http://rsc.stevebob.net');
     socket.emit('hello', channel);
     socket.on('msg', function (data) {
         receive(data);
